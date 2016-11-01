@@ -36,9 +36,19 @@ function callback(results, status) {
     console.error(status);
     return;
   }
+  var max = 0;
+  var index = null;
   for (var i = 0, result; result = results[i]; i++) {
     addMarker(result);
+    var from = new google.maps.LatLng(36.109979, 140.101418);
+    var to = result.geometry.location;
+    var distance = google.maps.geometry.spherical.computeDistanceBetween(from, to);
+    if(max < distance){
+      max = distance;
+      index = i;
+    }
   }
+  console.log(results[index]);
 }
 
 function addMarker(place) {
