@@ -24,7 +24,7 @@ function initMap() {
 
 function performSearch() {
   var request = {
-  	location: new google.maps.LatLng(36.109979, 140.101418),
+    location: new google.maps.LatLng(36.109979, 140.101418),
     radius: 5000,
     keyword: 'best view'
   };
