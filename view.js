@@ -40,12 +40,19 @@ function callback(results, status) {
     console.error(status);
     return;
   }
+  var max = 0;
+  var index = null;
   for (var i = 0;i < results.length;i++) {
-    addMarker(results[i]);
+    addMarker(result);
+    var from = new google.maps.LatLng(36.109979, 140.101418);
+    var to = result.geometry.location;
+    var distance = google.maps.geometry.spherical.computeDistanceBetween(from, to);
+    if(max < distance){
+      max = distance;
+      index = i;
+    }
   }
-  if (results.length > 1) {
-    directRoute(results[0], results[1]);
-  }
+  console.log(results[index]);
 }
 
 function addMarker(place) {
